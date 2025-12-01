@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>IA & Citoyenneté Numérique – Mourad Afekhssi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sensibilisation IA et Citoyenneté Numérique : Ateliers adaptés aux écoles, collèges, lycées et structures jeunesse.">
+
+  <!-- On pointe vers le CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ======= HEADER / HERO ======= -->
+  <header>
+    <div class="hero-inner">
+
+      <div>
+        <div class="brand-bar">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="logo-badge">IA</div>
+            IA & Citoyenneté Numérique
+          </div>
+          <div class="brand-tag">Sensibilisation · Ateliers · Accompagnement</div>
+        </div>
+
+        <h1>IA & Citoyenneté Numérique</h1>
+        <p class="hero-subtitle">Interventions pour écoles, collèges, lycées et structures jeunesse.</p>
+
+        <p class="hero-slogan">
+          <strong>Comprendre l’IA.</strong> Développer l’esprit critique. Protéger le jeune public.
+        </p>
+
+        <div class="hero-highlights">
+          <span class="highlight-chip">+20 ans d’expérience</span>
+          <span class="highlight-chip">Approche pédagogique</span>
+          <span class="highlight-chip">Contenus adaptables</span>
+        </div>
+
+        <!-- BOUTON ACTIVÉ -->
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="#contact">
+            <button class="btn-primary">Demander une intervention →</button>
+          </a>
+          <a href="#problematique" class="btn-secondary">Voir les enjeux</a>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div>
+          <strong style="font-size:0.9rem;">Enjeux abordés</strong>
+          <ul>
+            <li>Fonctionnement des IA</li>
+            <li>Limites, erreurs & biais</li>
+            <li>Deepfakes & désinformation</li>
+            <li>Données personnelles</li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </header>
+
+
+
+  <!-- ======= SECTIONS ======= -->
+  <main>
+
+    <section id="problematique">
+      <h2>Pourquoi parler d’IA aujourd’hui ?</h2>
+
+      <div class="two-cols">
+
+        <div>
+          <ul class="bullet-list">
+            <li>Usages non maîtrisés (triche, dépendance).</li>
+            <li>Images & vidéos truquées (deepfakes).</li>
+            <li>Données personnelles exposées.</li>
+            <li>Méfiance ou confiance aveugle.</li>
+          </ul>
+        </div>
+
+        <div>
+          <ul class="bullet-list">
+            <li>Comprendre comment l’IA fonctionne.</li>
+            <li>Identifier les erreurs et limites.</li>
+            <li>Développer l’esprit critique.</li>
+            <li>Adopter un usage responsable.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- ======= CONTACT ======= -->
+    <section id="contact">
+      <h2>Me contacter</h2>
+      <p style="margin-bottom:10px; opacity:0.8;">Pour une demande d’intervention ou d’informations :</p>
+
+      <!-- ⚠️ METS TON EMAIL À LA LIGNE CI-DESSOUS -->
+      <form action="mailto:TON_ADRESSE_EMAIL" method="post" enctype="text/plain">
+
+        <input type="text" name="Nom" placeholder="Votre nom" required>
+        <input type="email" name="Email" placeholder="Votre email" required>
+        <textarea name="Message" placeholder="Votre message"></textarea>
+
+        <button type="submit">Envoyer ma demande</button>
+
+      </form>
+    </section>
+
+  </main>
+
+
+
+  <!-- ======= FOOTER ======= -->
+  <footer>
+    <span>© <span id="year"></span> – IA & Citoyenneté Numérique </span>
+    <a href="#top">Remonter ↑</a>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
