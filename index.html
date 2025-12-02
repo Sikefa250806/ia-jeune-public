@@ -2,130 +2,888 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>IA & Citoyenneté Numérique – Mourad Afekhssi</title>
+  <title>IA & Citoyenneté Numérique – Interventions en milieu scolaire</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Sensibilisation IA et Citoyenneté Numérique : Ateliers adaptés aux écoles, collèges, lycées et structures jeunesse.">
+  <meta name="description" content="Interventions sur l'intelligence artificielle, l'esprit critique et la citoyenneté numérique à destination des écoles, collèges, lycées et structures jeunesse." />
 
-  <!-- On pointe vers le CSS -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --bg-dark: #0b1020;
+      --bg-card: rgba(9, 15, 35, 0.9);
+      --accent: #ffd95a;
+      --accent-soft: rgba(255, 217, 90, 0.14);
+      --text-main: #f7f7ff;
+      --text-muted: #cfd3e6;
+      --border-soft: rgba(255, 255, 255, 0.14);
+      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.55);
+      --radius-xl: 24px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #273772 0, #050814 55%, #02030a 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(3, 6, 22, 0.96),
+        rgba(3, 6, 22, 0.85),
+        transparent
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 40%;
+      background: radial-gradient(circle at 30% 20%, #ffe9a6, #f7b733, #f25381);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b1020;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-main {
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .logo-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .nav-pill {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .nav-btn {
+      border-radius: var(--radius-pill);
+      padding: 8px 14px;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #ffd95a, #f7931e);
+      color: #141414;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast), background 0.25s ease;
+    }
+
+    .nav-btn span.icon {
+      font-size: 16px;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.8);
+      background: linear-gradient(135deg, #ffe38f, #ffb347);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 32px auto 0;
+      padding: 0 20px 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px 4px 4px;
+      border-radius: var(--radius-pill);
+      background: rgba(8, 13, 35, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 14px;
+    }
+
+    .hero-kicker span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #55efc4;
+      box-shadow: 0 0 0 6px rgba(85, 239, 196, 0.16);
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4vw, 40px);
+      line-height: 1.1;
+      margin: 0 0 12px;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #ffe38f, #ffba5a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 22px;
+    }
+
+    .badge {
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(7, 11, 31, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .badge strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .btn-primary {
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #ffd95a, #f7931e);
+      color: #141414;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast), background 0.25s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 24px 52px rgba(0, 0, 0, 0.85);
+      background: linear-gradient(135deg, #ffe38f, #ffb347);
+    }
+
+    .btn-secondary {
+      border-radius: var(--radius-pill);
+      padding: 9px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(7, 11, 31, 0.85);
+      color: var(--text-muted);
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background var(--transition-fast),
+        border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(15, 22, 55, 0.95);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+
+    .hero-note span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 260px;
+      border-radius: 32px;
+      overflow: hidden;
+      background-image: url("https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=1200");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(0, 0, 0, 0.35), transparent 55%),
+        linear-gradient(to bottom, rgba(2, 4, 12, 0.6), rgba(2, 4, 12, 0.96));
+    }
+
+    .hero-overlay-card {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      left: 16px;
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      padding: 16px 18px;
+      color: #ffffff;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.72);
+    }
+
+    .overlay-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .overlay-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .overlay-list li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 4px;
+    }
+
+    .overlay-list li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      top: 0;
+      color: var(--accent);
+    }
+
+    .overlay-footnote {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 20px 36px;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .section-lead {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-bottom: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: rgba(7, 11, 31, 0.96);
+      border-radius: 24px;
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.6);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 0;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(3, 5, 18, 0.9);
+    }
+
+    .highlight-box {
+      background: rgba(255, 217, 90, 0.08);
+      border-radius: 18px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 217, 90, 0.35);
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .highlight-box strong {
+      color: #ffe38f;
+      font-weight: 600;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .form-field {
+      flex: 1;
+      min-width: 140px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    label span.small {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    input,
+    select,
+    textarea {
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 8px 10px;
+      font-size: 14px;
+      background: rgba(3, 6, 22, 0.9);
+      color: #ffffff;
+      outline: none;
+      transition: border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+      font-family: inherit;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(255, 217, 90, 0.5);
+      background: rgba(6, 10, 32, 0.98);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .help-link {
+      font-size: 11px;
+      margin-top: 2px;
+      color: var(--accent);
+    }
+
+    .help-link a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    .form-footer-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 20px 26px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+  </style>
 </head>
-
 <body>
-
-  <!-- ======= HEADER / HERO ======= -->
-  <header>
-    <div class="hero-inner">
-
-      <div>
-        <div class="brand-bar">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <div class="logo-badge">IA</div>
-            IA & Citoyenneté Numérique
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="logo-wrap">
+          <div class="logo-badge">IA</div>
+          <div class="logo-text">
+            <div class="logo-main">IA & Citoyenneté Numérique</div>
+            <div class="logo-sub">Sensibilisation • Ateliers • Accompagnement</div>
           </div>
-          <div class="brand-tag">Sensibilisation · Ateliers · Accompagnement</div>
         </div>
 
-        <h1>IA & Citoyenneté Numérique</h1>
-        <p class="hero-subtitle">Interventions pour écoles, collèges, lycées et structures jeunesse.</p>
+        <div class="nav-cta">
+          <div class="nav-pill">Jeune public • Écoles • Collèges • Lycées</div>
+          <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+            <span class="icon">✉️</span>
+            <span>Demander une intervention</span>
+          </button>
+        </div>
+      </nav>
+    </header>
 
-        <p class="hero-slogan">
-          <strong>Comprendre l’IA.</strong> Développer l’esprit critique. Protéger le jeune public.
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="hero-main">
+          <div class="hero-kicker">
+            <span class="dot"></span>
+            <span>Interventions en milieu scolaire</span>
+          </div>
+
+          <h1 class="hero-title">
+            IA & <span class="highlight">Citoyenneté Numérique</span><br />
+            pour le jeune public
+          </h1>
+
+          <p class="hero-subtitle">
+            Comprendre l’IA, développer l’esprit critique et protéger le jeune public
+            face aux usages numériques, aux deepfakes, aux données personnelles… et
+            à leur impact écologique.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge"><strong>+20 ans</strong> d’expérience terrain</div>
+            <div class="badge">Contenus adaptés du CM1 au lycée</div>
+            <div class="badge">Format ateliers, conférences, débats</div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+              Demander une intervention
+            </button>
+            <button class="btn-secondary" onclick="document.getElementById('enjeux').scrollIntoView({behavior: 'smooth'})">
+              Voir les enjeux abordés
+            </button>
+          </div>
+
+          <p class="hero-note">
+            Interventions possibles <span>en journée ou en soirée</span>, auprès
+            des élèves, équipes éducatives ou parents d’élèves.
+          </p>
+        </div>
+
+        <!-- VISUEL + ENJEUX -->
+        <div class="hero-visual">
+          <div class="hero-overlay-card" id="enjeux">
+            <div class="overlay-title">Enjeux abordés</div>
+            <ul class="overlay-list">
+              <li>Fonctionnement des IA (génératives & outils du quotidien)</li>
+              <li>Limites, erreurs & biais algorithmiques</li>
+              <li>Deepfakes & désinformation</li>
+              <li>Données personnelles & traces numériques</li>
+              <li>Impact écologique des usages numériques & de l’IA</li>
+            </ul>
+            <div class="overlay-footnote">
+              Le contenu est ajusté au niveau des élèves et au contexte de
+              l’établissement.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- POURQUOI EN PARLER -->
+      <section class="section">
+        <h2>Pourquoi parler d’IA aujourd’hui&nbsp;?</h2>
+        <p class="section-lead">
+          L’IA s’invite dans les devoirs, les réseaux sociaux, les moteurs de
+          recherche… La question n’est plus de savoir si les jeunes l’utilisent,
+          mais comment les aider à l’utiliser de façon éclairée et responsable.
         </p>
 
-        <div class="hero-highlights">
-          <span class="highlight-chip">+20 ans d’expérience</span>
-          <span class="highlight-chip">Approche pédagogique</span>
-          <span class="highlight-chip">Contenus adaptables</span>
-        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Objectifs pédagogiques</h3>
+            <p>
+              Donner aux élèves des repères clairs pour :
+            </p>
+            <ul class="overlay-list">
+              <li>Comprendre comment fonctionnent les IA (sans jargon technique)</li>
+              <li>Identifier les risques de désinformation, de triche ou de dépendance</li>
+              <li>Apprendre à vérifier une information et développer l’esprit critique</li>
+              <li>Prendre conscience de l’empreinte écologique du numérique</li>
+            </ul>
+          </div>
 
-        <!-- BOUTON ACTIVÉ -->
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a href="#contact">
-            <button class="btn-primary">Demander une intervention →</button>
-          </a>
-          <a href="#problematique" class="btn-secondary">Voir les enjeux</a>
+          <div class="card">
+            <h3>Formats possibles</h3>
+            <p>Les interventions peuvent prendre plusieurs formes :</p>
+            <div class="pill-row">
+              <div class="pill">Séquences en classe</div>
+              <div class="pill">Ateliers interactifs</div>
+              <div class="pill">Conférences élèves / parents</div>
+              <div class="pill">Temps d’équipe pédagogique</div>
+            </div>
+            <div class="highlight-box">
+              <strong>Tout est co-construit</strong> avec l’établissement en amont :
+              niveaux concernés, durée, articulation avec les projets déjà en place
+              (EMI, EMC, PIX, CESC, parcours citoyen, etc.).
+            </div>
+          </div>
         </div>
+      </section>
+
+      <!-- CONDITIONS & MODALITES (TARIFS SANS CHIFFRE) -->
+      <section class="section">
+        <h2>Conditions & modalités</h2>
+        <p class="section-lead">
+          L’idée n’est pas de proposer un “pack tout fait”, mais de construire une
+          intervention réaliste, utile et soutenable pour l’établissement.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Une intervention adaptée à votre réalité</h3>
+            <p>
+              Chaque structure a ses contraintes : emplois du temps serrés,
+              disponibilité des équipes, organisation en niveaux ou en projets
+              transversaux…
+            </p>
+            <p>
+              Lors du premier échange, nous clarifions ensemble :
+            </p>
+            <ul class="overlay-list">
+              <li>les publics concernés (niveaux, classes, groupes)</li>
+              <li>le format le plus pertinent (cours, ateliers, conférence)</li>
+              <li>la durée et le nombre de séances</li>
+              <li>les objectifs pédagogiques prioritaires</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Une proposition claire, sans surprise</h3>
+            <p>
+              Plutôt qu’un tarif standard affiché, je préfère une approche
+              transparente et personnalisée :
+            </p>
+            <ul class="overlay-list">
+              <li>prise en compte de la taille de l’établissement et du projet,</li>
+              <li>adaptation aux contraintes budgétaires,</li>
+              <li>proposition écrite détaillant les contenus et le format.</li>
+            </ul>
+            <div class="highlight-box">
+              🎯 <strong>Concrètement :</strong> vous me décrivez votre contexte,
+              et je vous envoie une proposition d’intervention personnalisée,
+              sans engagement. Vous gardez la main sur la décision.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <h2>Demander une intervention ou un échange préalable</h2>
+        <p class="section-lead">
+          Vous pouvez utiliser ce formulaire pour évoquer votre contexte, vos
+          objectifs et vos contraintes. Je vous réponds rapidement avec des pistes
+          concrètes, une proposition d’intervention ou un simple créneau
+          d’échange.
+        </p>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3>Formulaire de contact</h3>
+            <p>
+              Les champs ci-dessous permettent de situer rapidement votre
+              établissement et votre demande. N’hésitez pas à être précis dans le
+              message, même en quelques lignes seulement.
+            </p>
+
+            <!-- Formulaire simple : envoi par mailto -->
+            <form
+              action="mailto:contact@ia-citoyennete.fr"
+              method="POST"
+              enctype="text/plain"
+            >
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="nom">Nom et prénom</label>
+                  <input id="nom" name="Nom et prénom" required />
+                </div>
+                <div class="form-field">
+                  <label for="fonction">Fonction</label>
+                  <select id="fonction" name="Fonction">
+                    <option>Chef d'établissement</option>
+                    <option>Adjoint / Adjointe</option>
+                    <option>Professeur / Enseignant</option>
+                    <option>CPE / Vie scolaire</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="etab">Nom de l’établissement</label>
+                  <input id="etab" name="Établissement" required />
+                </div>
+                <div class="form-field">
+                  <label for="uai">
+                    Code UAI
+                    <span class="small">(si vous le connaissez)</span>
+                  </label>
+                  <input id="uai" name="Code UAI" />
+                  <div class="help-link">
+                    🔎
+                    <a href="https://annuaire-education.fr" target="_blank" rel="noopener">
+                      Rechercher le code UAI de mon établissement
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="ville">Ville</label>
+                  <input id="ville" name="Ville" />
+                </div>
+                <div class="form-field">
+                  <label for="email">Adresse e-mail de contact</label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="Email"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="public">
+                  Public concerné
+                  <span class="small">(ex&nbsp;: 4 classes de 3e, parents, équipe pédagogique…)</span>
+                </label>
+                <input
+                  id="public"
+                  name="Public concerné"
+                  placeholder="Niveaux, nombre de classes, type de public…"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="message">Votre message</label>
+                <textarea
+                  id="message"
+                  name="Message"
+                  placeholder="Quelques mots sur votre contexte, vos besoins, vos contraintes de calendrier…"
+                  required
+                ></textarea>
+              </div>
+
+              <button class="btn-primary" type="submit">
+                Envoyer ma demande par e-mail
+              </button>
+
+              <div class="form-footer-note">
+                💬 Vous préférez un simple échange informel dans un premier temps&nbsp;?
+                Indiquez-le dans le message, je vous proposerai un créneau en visio ou
+                par téléphone.
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3>Ce que nous pouvons clarifier ensemble</h3>
+            <p>
+              Lors du premier contact, nous pouvons par exemple&nbsp;:
+            </p>
+            <ul class="overlay-list">
+              <li>identifier les besoins prioritaires de vos élèves ou équipes&nbsp;;</li>
+              <li>choisir le bon format (atelier, conférence, cycle d’interventions)&nbsp;;</li>
+              <li>voir comment intégrer l’IA dans vos projets déjà existants&nbsp;;</li>
+              <li>adapter l’intervention à votre calendrier et à vos moyens.</li>
+            </ul>
+
+            <div class="highlight-box">
+              🌱 <strong>Dimension écologique :</strong> si vous le souhaitez, nous pouvons
+              intégrer un volet spécifique sur l’impact environnemental du numérique
+              et des IA (consommation, sobriété numérique, gestes concrets pour les
+              élèves).
+            </div>
+
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 12px;">
+              Vous pouvez également écrire directement à :
+              <br />
+              <strong>contact@ia-citoyennete.fr</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>© <span id="year"></span> IA & Citoyenneté Numérique</div>
+        <div>Site statique – hébergé via GitHub Pages &amp; OVH</div>
       </div>
-
-      <aside class="hero-side">
-        <div>
-          <strong style="font-size:0.9rem;">Enjeux abordés</strong>
-          <ul>
-            <li>Fonctionnement des IA</li>
-            <li>Limites, erreurs & biais</li>
-            <li>Deepfakes & désinformation</li>
-            <li>Données personnelles</li>
-          </ul>
-        </div>
-      </aside>
-
-    </div>
-  </header>
-
-
-
-  <!-- ======= SECTIONS ======= -->
-  <main>
-
-    <section id="problematique">
-      <h2>Pourquoi parler d’IA aujourd’hui ?</h2>
-
-      <div class="two-cols">
-
-        <div>
-          <ul class="bullet-list">
-            <li>Usages non maîtrisés (triche, dépendance).</li>
-            <li>Images & vidéos truquées (deepfakes).</li>
-            <li>Données personnelles exposées.</li>
-            <li>Méfiance ou confiance aveugle.</li>
-          </ul>
-        </div>
-
-        <div>
-          <ul class="bullet-list">
-            <li>Comprendre comment l’IA fonctionne.</li>
-            <li>Identifier les erreurs et limites.</li>
-            <li>Développer l’esprit critique.</li>
-            <li>Adopter un usage responsable.</li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-
-
-    <!-- ======= CONTACT ======= -->
-    <section id="contact">
-      <h2>Me contacter</h2>
-      <p style="margin-bottom:10px; opacity:0.8;">Pour une demande d’intervention ou d’informations :</p>
-
-      <!-- ⚠️ METS TON EMAIL À LA LIGNE CI-DESSOUS -->
-      <form action="mailto:contact@ia-citoyennete.fr" method="post" enctype="text/plain">
-
-        <input type="text" name="Nom" placeholder="Votre nom" required>
-        <input type="email" name="Email" placeholder="Votre email" required>
-        <textarea name="Message" placeholder="Votre message"></textarea>
-
-        <button type="submit">Envoyer ma demande</button>
-
-      </form>
-    </section>
-
-  </main>
-
-
-
-  <!-- ======= FOOTER ======= -->
-  <footer>
-    <span>© <span id="year"></span> – IA & Citoyenneté Numérique </span>
-    <a href="#top">Remonter ↑</a>
-  </footer>
+    </footer>
+  </div>
 
   <script>
+    // Affiche automatiquement l'année courante dans le footer
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
-
