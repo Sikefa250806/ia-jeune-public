@@ -925,7 +925,7 @@
 
       <div class="contact-grid">
         <div class="contact-card">
-          <form action="mailto:contact@votre-adresse.fr" method="POST" enctype="text/plain">
+          <form id="contactForm">
             <div class="contact-row">
               <div style="flex: 1 1 160px;">
                 <label class="field-label">Nom / structure</label>
@@ -1005,5 +1005,33 @@
 </footer>
 
   </div>
+
+  <script>
+    const MAKE_WEBHOOK_URL = "https://vlj8uprq77qko5ss7g6139cgys393wdc@hook.eu1.make.com";
+
+    const form = document.getElementById("contactForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch(MAKE_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) throw new Error("Erreur webhook");
+
+        alert("Merci ! Votre demande a bien été envoyée.");
+        form.reset();
+      } catch (err) {
+        alert("Désolé, une erreur est survenue. Merci de réessayer ou de nous écrire par e-mail.");
+      }
+    });
+  </script>
 </body>
 </html>
