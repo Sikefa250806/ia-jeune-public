@@ -18,24 +18,27 @@
 
   <style>
     :root {
-      --primary: #ff7b7b;
-      --secondary: #6366f1;
-      --accent: #facc15;
       --bg-dark: #020617;
-      --bg-card: rgba(15, 23, 42, 0.82);
       --text-main: #f9fafb;
       --text-muted: #cbd5f5;
+
       --border-soft: rgba(148, 163, 184, 0.35);
       --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.6);
       --radius-xl: 24px;
-      --transition-fast: 0.2s ease-out;
+
+      --accent-orange: #fb923c; /* point orange */
+      --accent-blue: #38bdf8;   /* flèche bleue + bulles */
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #020617;
+      background: var(--bg-dark);
       color: var(--text-main);
       min-height: 100vh;
       line-height: 1.6;
@@ -44,6 +47,7 @@
       overflow-x: hidden;
     }
 
+    /* Background image (si présent) */
     body::before {
       content: "";
       position: fixed;
@@ -56,6 +60,7 @@
       z-index: -2;
     }
 
+    /* Voile pour lisibilité */
     body::after {
       content: "";
       position: fixed;
@@ -65,168 +70,97 @@
     }
 
     .page {
-      max-width: 980px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 20px 16px 60px;
     }
 
-    .nav {
+    /* === ONGLET BULLES (BLEU) === */
+    .top-bubbles {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 18px;
-      margin-bottom: 26px;
-      border-radius: 999px;
-      background: linear-gradient(120deg, rgba(248, 250, 252, 0.9), rgba(191, 219, 254, 0.9));
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.55);
-      backdrop-filter: blur(16px);
-      position: sticky;
-      top: 12px;
-      z-index: 10;
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-badge {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: conic-gradient(from 180deg, #f97316, #ec4899, #22d3ee, #6366f1, #f97316);
-      padding: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      background: radial-gradient(circle at 30% 0%, #fef3c7, #e5e7eb);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 16px;
-      color: #111827;
-    }
-
-    .nav-title {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .nav-title-main {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: #0f172a;
-    }
-
-    .nav-title-sub {
-      font-size: 11px;
-      color: #475569;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
       justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
-    .nav-bubble {
+    .bubble-link {
       font-size: 11px;
-      padding: 7px 12px;
+      padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.92);
-      color: #e5e7eb;
-      border: 1px solid rgba(148, 163, 184, 0.85);
+      background: rgba(56, 189, 248, 0.18);
+      color: #e0f2fe;
+      border: 1px solid rgba(56, 189, 248, 0.75);
       text-decoration: none;
-      transition: transform var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.45);
+      transition: transform 0.2s ease-out, background 0.2s ease-out, border-color 0.2s ease-out;
       white-space: nowrap;
     }
 
-    .nav-bubble:hover {
+    .bubble-link:hover {
       transform: translateY(-1px);
-      background: rgba(30, 64, 175, 0.92);
-      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.55);
+      background: rgba(56, 189, 248, 0.28);
+      border-color: rgba(56, 189, 248, 0.95);
       text-decoration: none;
     }
 
-    .hero {
-      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), rgba(15, 23, 42, 0.94));
-      border-radius: var(--radius-xl);
-      padding: 22px 22px 18px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      box-shadow: var(--shadow-soft);
+    /* === HERO (style similaire à ton image) === */
+    .faq-hero {
+      border-radius: 28px;
+      padding: 26px 28px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.45);
+      background:
+        radial-gradient(circle at 10% 15%, rgba(255,255,255,0.08), transparent 55%),
+        linear-gradient(120deg, rgba(15,23,42,0.92), rgba(30,41,59,0.88));
       backdrop-filter: blur(18px);
       margin-bottom: 18px;
-      position: relative;
-      overflow: hidden;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at 0 0, rgba(244, 114, 182, 0.18), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.2), transparent 55%);
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
-    .hero > * { position: relative; z-index: 1; }
-
-    .hero-title {
-      font-size: clamp(22px, 3vw, 28px);
+    .faq-hero h1 {
+      font-size: clamp(26px, 3vw, 40px);
       font-weight: 700;
+      letter-spacing: -0.02em;
       margin-bottom: 8px;
     }
 
-    .hero-title span {
-      background: linear-gradient(120deg, #f97316, #ec4899, #22c55e, #0ea5e9);
+    .faq-hero h1 .grad {
+      background: linear-gradient(120deg, #fb923c, #ec4899, #22c55e, #38bdf8);
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    .hero-subtitle {
+    .faq-hero p {
       font-size: 13px;
-      color: #e5e7eb;
-      max-width: 720px;
+      color: var(--text-muted);
+      max-width: 900px;
     }
 
-    .card {
-      background: var(--bg-card);
-      border-radius: 18px;
-      border: 1px solid var(--border-soft);
-      padding: 14px 14px 12px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
+    /* === FAQ CARDS === */
+    .faq-wrap {
+      background: rgba(15, 23, 42, 0.72);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      padding: 14px;
       backdrop-filter: blur(16px);
-      margin-top: 14px;
     }
 
     .faq-item {
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.7);
-      border-radius: 16px;
-      padding: 12px 12px 10px;
-      margin-bottom: 10px;
-      overflow: hidden;
+      background: rgba(2, 6, 23, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      border-radius: 18px;
+      padding: 14px 14px;
+      margin-bottom: 12px;
     }
+
+    .faq-item:last-child { margin-bottom: 0; }
 
     details summary {
       cursor: pointer;
       list-style: none;
       display: flex;
-      align-items: baseline;
+      align-items: center;
       justify-content: space-between;
       gap: 12px;
       font-weight: 600;
@@ -236,45 +170,51 @@
 
     details summary::-webkit-details-marker { display: none; }
 
-    .faq-q {
+    .q-left {
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      min-width: 0;
     }
 
-    .faq-dot {
-      width: 10px;
-      height: 10px;
+    .dot-orange {
+      width: 9px;
+      height: 9px;
       border-radius: 999px;
-      background: radial-gradient(circle, var(--accent), #b45309);
-      box-shadow: 0 0 14px rgba(250, 204, 21, 0.55);
-      flex: 0 0 auto;
+      background: var(--accent-orange);
+      box-shadow: 0 0 12px rgba(251, 146, 60, 0.85);
+      flex-shrink: 0;
     }
 
-    .faq-chevron {
-      font-size: 12px;
-      color: rgba(203, 213, 245, 0.85);
-      flex: 0 0 auto;
+    .q-text {
+      white-space: normal;
     }
 
-    details[open] .faq-chevron { transform: rotate(180deg); }
+    .arrow {
+      color: var(--accent-blue);
+      font-size: 14px;
+      line-height: 1;
+      transition: transform 0.25s ease-out;
+      flex-shrink: 0;
+    }
+
+    details[open] .arrow {
+      transform: rotate(180deg);
+    }
 
     .faq-a {
       margin-top: 10px;
       font-size: 12px;
       color: var(--text-muted);
+      line-height: 1.65;
     }
 
-    .faq-a strong { color: #fef9c3; font-weight: 600; }
-
-    .note {
-      font-size: 11px;
-      color: rgba(203, 213, 245, 0.9);
-      margin-top: 12px;
+    .faq-a ul {
+      margin: 8px 0 0 18px;
     }
 
-    .footer {
-      margin-top: 26px;
+    footer {
+      margin-top: 28px;
       font-size: 11px;
       color: var(--text-muted);
       display: flex;
@@ -285,53 +225,46 @@
       padding-top: 10px;
     }
 
-    .footer span strong { color: #e5e7eb; }
+    footer span strong { color: #e5e7eb; }
 
-    a { color: #a5b4fc; }
-    a:hover { text-decoration: underline; }
   </style>
 </head>
 
 <body>
   <div class="page">
-    <!-- NAVBAR -->
-    <header class="nav">
-      <div class="nav-left">
-        <div class="logo-badge">
-          <div class="logo-inner">IA</div>
-        </div>
-        <div class="nav-title">
-          <span class="nav-title-main">FAQ / Qui sommes-nous</span>
-          <span class="nav-title-sub">IA & Citoyenneté · Sensibilisation au numérique responsable</span>
-        </div>
-      </div>
 
-      <div class="nav-right">
-        <a class="nav-bubble" href="index.html">Retour au site</a>
-      </div>
-    </header>
+    <!-- ONGLET BULLES -->
+    <div class="top-bubbles">
+      <a href="index.html" class="bubble-link">Accueil</a>
+      <a href="index.html#contact" class="bubble-link">Contact</a>
+    </div>
 
     <!-- HERO -->
-    <section class="hero">
-      <h1 class="hero-title">Questions fréquentes · <span>IA & Citoyenneté</span></h1>
-      <p class="hero-subtitle">
-        Cette page répond aux questions les plus courantes sur les interventions, les intervenants et le cadre (association loi 1901).
+    <section class="faq-hero">
+      <h1>Questions fréquentes · <span class="grad">IA & Citoyenneté</span></h1>
+      <p>
+        Cette page répond aux questions les plus courantes sur les interventions, les intervenants et le cadre
+        (association loi 1901).
       </p>
     </section>
 
     <!-- FAQ -->
-    <section class="card" id="faq">
+    <section class="faq-wrap">
+
       <div class="faq-item">
-        <details open>
+        <details>
           <summary>
-            <span class="faq-q"><span class="faq-dot"></span>Qui sont les intervenants ?</span>
-            <span class="faq-chevron">▾</span>
+            <span class="q-left">
+              <span class="dot-orange"></span>
+              <span class="q-text">Qui sont les intervenants ?</span>
+            </span>
+            <span class="arrow">▾</span>
           </summary>
           <div class="faq-a">
-            Les interventions sont animées par des personnes engagées dans la transmission et l’éducation :
-            <strong>enseignants</strong>, <strong>éducateurs</strong>, intervenants en milieu scolaire ou
-            <strong>professionnels de l’éducation</strong>. Selon les formats, des profils issus du numérique
-            peuvent également intervenir pour apporter des exemples concrets, toujours avec une démarche pédagogique.
+            Les interventions sont animées par des enseignants, éducateurs, professionnels de l’éducation et du numérique,
+            ainsi que par des parents engagés, partageant une même mission : sensibiliser le jeune public à un usage
+            responsable, critique et éclairé de l’intelligence artificielle et du numérique.<br>
+            Tous les intervenants s’inscrivent dans une démarche pédagogique, citoyenne et non commerciale.
           </div>
         </details>
       </div>
@@ -339,13 +272,17 @@
       <div class="faq-item">
         <details>
           <summary>
-            <span class="faq-q"><span class="faq-dot"></span>Quel est l’objectif des interventions ?</span>
-            <span class="faq-chevron">▾</span>
+            <span class="q-left">
+              <span class="dot-orange"></span>
+              <span class="q-text">À quels publics s’adressent les interventions ?</span>
+            </span>
+            <span class="arrow">▾</span>
           </summary>
           <div class="faq-a">
-            Donner au jeune public et aux communautés éducatives des repères simples et solides :
-            comprendre l’IA, développer l’esprit critique, identifier les manipulations (deepfakes, intox),
-            protéger ses données et adopter des <strong>bons réflexes</strong> sur les réseaux sociaux.
+            Les ateliers et conférences s’adressent au jeune public au sens large : enfants, adolescents et jeunes adultes,
+            mais aussi aux communautés éducatives (enseignants, équipes éducatives, parents, personnels d’encadrement).<br>
+            Les formats sont adaptés aux écoles, collèges, lycées, structures jeunesse, associations, collectivités et autres
+            cadres éducatifs.
           </div>
         </details>
       </div>
@@ -353,13 +290,22 @@
       <div class="faq-item">
         <details>
           <summary>
-            <span class="faq-q"><span class="faq-dot"></span>À quels publics s’adressent les ateliers ?</span>
-            <span class="faq-chevron">▾</span>
+            <span class="q-left">
+              <span class="dot-orange"></span>
+              <span class="q-text">Quels sujets sont abordés lors des interventions ?</span>
+            </span>
+            <span class="arrow">▾</span>
           </summary>
           <div class="faq-a">
-            Aux <strong>enfants et adolescents</strong> (écoles, collèges, lycées, structures jeunesse),
-            mais aussi aux <strong>enseignants</strong>, aux <strong>parents</strong> et aux équipes éducatives.
-            Les formats et contenus sont adaptés à l’âge et au contexte.
+            Les interventions abordent notamment :
+            <ul>
+              <li>le fonctionnement général de l’intelligence artificielle,</li>
+              <li>les usages quotidiens (réseaux sociaux, contenus générés, outils numériques),</li>
+              <li>les risques réels : deepfakes, manipulation de l’information, atteinte à la vie privée, usurpation d’identité,</li>
+              <li>les impacts sur la santé mentale, l’esprit critique et la confiance dans l’information,</li>
+              <li>l’impact environnemental du numérique et les gestes de sobriété.</li>
+            </ul>
+            L’objectif est de donner des repères, pas de faire peur, afin de mieux comprendre et se protéger.
           </div>
         </details>
       </div>
@@ -367,13 +313,15 @@
       <div class="faq-item">
         <details>
           <summary>
-            <span class="faq-q"><span class="faq-dot"></span>Combien coûte une intervention ?</span>
-            <span class="faq-chevron">▾</span>
+            <span class="q-left">
+              <span class="dot-orange"></span>
+              <span class="q-text">Les interventions sont-elles adaptées à l’âge du public ?</span>
+            </span>
+            <span class="arrow">▾</span>
           </summary>
           <div class="faq-a">
-            Le tarif dépend du <strong>format</strong> (durée, nombre de groupes, présentiel/visio) et des besoins
-            (atelier, conférence, formation). Nous proposons systématiquement une solution adaptée au budget de la structure.
-            Pour obtenir un prix, le plus simple est de nous contacter avec la durée souhaitée, le public et la ville.
+            Oui. Le contenu, le vocabulaire et les exemples sont systématiquement adaptés à l’âge et au contexte du public concerné.
+            Chaque intervention est pensée pour être accessible, interactive et pédagogique, quel que soit le niveau.
           </div>
         </details>
       </div>
@@ -381,13 +329,16 @@
       <div class="faq-item">
         <details>
           <summary>
-            <span class="faq-q"><span class="faq-dot"></span>Êtes-vous une association ou une entreprise ?</span>
-            <span class="faq-chevron">▾</span>
+            <span class="q-left">
+              <span class="dot-orange"></span>
+              <span class="q-text">Êtes-vous une association ou une entreprise ?</span>
+            </span>
+            <span class="arrow">▾</span>
           </summary>
           <div class="faq-a">
-            Nous sommes une <strong>association loi 1901 à but non lucratif</strong>, dont la mission est la sensibilisation
-            du jeune public et des communautés éducatives à un usage responsable, critique et éclairé de l’intelligence artificielle
-            et du numérique. Nos interventions s’inscrivent dans une démarche <strong>éducative et citoyenne</strong>, et non commerciale.
+            Nous sommes une association loi 1901 à but non lucratif, dont la mission est la sensibilisation du jeune public et des
+            communautés éducatives à un usage responsable, critique et éclairé de l’intelligence artificielle et du numérique.<br>
+            Nos interventions s’inscrivent dans une démarche éducative et citoyenne, et non commerciale.
           </div>
         </details>
       </div>
@@ -395,12 +346,23 @@
       <div class="faq-item">
         <details>
           <summary>
-            <span class="faq-q"><span class="faq-dot"></span>Peut-on avoir une facture / un devis ?</span>
-            <span class="faq-chevron">▾</span>
+            <span class="q-left">
+              <span class="dot-orange"></span>
+              <span class="q-text">Les interventions sont-elles payantes ?</span>
+            </span>
+            <span class="arrow">▾</span>
           </summary>
           <div class="faq-a">
-            Oui. Sur demande, nous fournissons un <strong>devis</strong> et une <strong>facture</strong> pour les prestations réalisées
-            (interventions, conférences, formations). Cela correspond à une <strong>prestation de service</strong>.
+            Oui, certaines interventions peuvent faire l’objet d’une participation financière.<br>
+            Les modalités (gratuité, participation, prestation facturée) sont définies au cas par cas, en fonction :
+            <ul>
+              <li>du format,</li>
+              <li>de la durée,</li>
+              <li>du public concerné,</li>
+              <li>et du cadre d’intervention (établissement, structure associative, collectivité).</li>
+            </ul>
+            L’objectif est de couvrir les frais liés à l’intervention et de permettre la continuité des actions de sensibilisation.<br>
+            Un devis ou une convention peut être proposé sur simple demande.
           </div>
         </details>
       </div>
@@ -408,29 +370,44 @@
       <div class="faq-item">
         <details>
           <summary>
-            <span class="faq-q"><span class="faq-dot"></span>Un don donne-t-il droit à une réduction d’impôt ?</span>
-            <span class="faq-chevron">▾</span>
+            <span class="q-left">
+              <span class="dot-orange"></span>
+              <span class="q-text">Peut-on faire un don à l’association ?</span>
+            </span>
+            <span class="arrow">▾</span>
           </summary>
           <div class="faq-a">
-            Un <strong>don</strong> peut ouvrir droit à une réduction d’impôt uniquement si l’association est
-            <strong>éligible au régime du mécénat</strong> et si un <strong>reçu fiscal</strong> est délivré,
-            dans le respect des règles applicables. En revanche, le paiement d’une <strong>prestation</strong>
-            (une intervention facturée) n’est généralement <strong>pas</strong> considéré comme un don.
+            Oui. Il est possible de soutenir l’association par des dons, qui contribuent au développement des actions éducatives et
+            de sensibilisation.<br>
+            Les modalités sont précisées sur demande.
           </div>
         </details>
       </div>
 
-      <div class="note">
-        Note : cette FAQ est informative. Pour sécuriser le cadre (dons, mécénat, reçus fiscaux), il est recommandé de valider
-        l’éligibilité au mécénat et le modèle de reçu auprès d’un professionnel (expert-comptable / fiscaliste) ou via les démarches officielles.
+      <div class="faq-item">
+        <details>
+          <summary>
+            <span class="q-left">
+              <span class="dot-orange"></span>
+              <span class="q-text">Comment organiser une intervention ?</span>
+            </span>
+            <span class="arrow">▾</span>
+          </summary>
+          <div class="faq-a">
+            Il suffit de prendre contact via le formulaire ou par e-mail.<br>
+            Un échange permet de préciser les besoins, le public, le format souhaité et les conditions d’intervention.
+          </div>
+        </details>
       </div>
+
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer">
+    <footer>
       <span>© <strong>2025</strong> · IA & Citoyenneté</span>
-      <span>Association loi 1901 à but non lucratif</span>
+      <span>Association loi 1901 à but non lucratif.</span>
     </footer>
+
   </div>
 </body>
 </html>
