@@ -149,6 +149,17 @@
       background: rgba(15, 23, 42, 0.9);
       color: #e5e7eb;
       border: 1px solid rgba(148, 163, 184, 0.8);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     /* HERO */
@@ -611,6 +622,50 @@
     a:hover {
       text-decoration: underline;
     }
+
+    /* === FORMULAIRE CONTACT – COULEURS PLUS VIVES === */
+
+    .contact-card {
+      background: linear-gradient(
+        145deg,
+        rgba(30, 64, 175, 0.85),
+        rgba(15, 23, 42, 0.95)
+      );
+      border: 1px solid rgba(99, 102, 241, 0.8);
+    }
+
+    .field-label {
+      color: #fde68a; /* jaune chaud */
+      font-weight: 500;
+    }
+
+    .field-input,
+    .field-textarea {
+      background: rgba(2, 6, 23, 0.95);
+      border: 1px solid rgba(99, 102, 241, 0.9);
+      color: #f9fafb;
+    }
+
+    .field-input::placeholder,
+    .field-textarea::placeholder {
+      color: rgba(203, 213, 225, 0.6);
+    }
+
+    .field-input:focus,
+    .field-textarea:focus {
+      border-color: #facc15; /* jaune accent */
+      box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.5);
+      background: rgba(2, 6, 23, 1);
+    }
+
+    .contact-note {
+      color: #c7d2fe;
+    }
+
+    .contact-highlight {
+      color: #fde68a;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
@@ -623,11 +678,13 @@
         </div>
         <div class="nav-title">
           <span class="nav-title-main">Sensibilisation à l’Intelligence Artificielle</span>
-          <span class="nav-title-sub">Interventions pour les établissements scolaires</span>
+          <span class="nav-title-sub">Interventions pour écoles, établissements scolaires & structures jeunesse</span>
         </div>
       </div>
-      <div class="nav-pill">
-        <strong>Élèves</strong> · Enseignants · Parents
+
+      <div class="nav-right">
+        <a href="#contact" class="nav-pill"><strong>Contact</strong></a>
+        <a href="faq.html" class="nav-pill"><strong>FAQ / Qui sommes-nous</strong></a>
       </div>
     </header>
 
@@ -635,18 +692,22 @@
     <section class="hero">
       <div class="hero-main">
         <div class="hero-content">
+          <p class="hero-subtitle">
+            <strong>L’intelligence artificielle est une révolution majeure,</strong> mais elle facilite aussi des dérives déjà bien réelles : deepfakes crédibles, manipulation de l’information, vols de données, usurpation d’identité ou chantage en ligne.<br><br>
+            <strong>Les enfants et adolescents sont des cibles plus faciles</strong> car ils manquent souvent de recul, de repères juridiques et techniques, exposent davantage leurs données personnelles et font confiance à des contenus qu’ils perçoivent comme “réels”. De plus le jeune public est en permanence exposé aux réseaux sociaux qui amplifient davantage ces risques. <strong>Les préparer et les protéger</strong> est devenu indispensable face à une évolution qui ne fera que s’accélérer.
+          </p>
           <div class="hero-tagline">
             <span class="hero-tag-dot"></span>
             <span>Une IA expliquée simplement, avec un regard citoyen et écologique.</span>
           </div>
           <h1 class="hero-title">
-            Comprendre l’<span>Intelligence Artificielle</span> à l’école, sans oublier son impact sur la planète.
+            Comprendre l’<span>Intelligence Artificielle</span>, sans oublier son impact sur la planète.
           </h1>
           <p class="hero-subtitle">
             Ateliers de sensibilisation à l’IA à destination des <strong>élèves</strong>, des
             <strong>enseignants</strong>, des <strong>parents</strong> et du <strong>personnel éducatif</strong>.
             On y parle usages concrets, esprit critique, mais aussi <strong>impact environnemental du numérique</strong>
-            et gestes de sobriété à l’école.
+            et gestes de sobriété.
           </p>
 
           <div class="hero-highlight">
@@ -690,7 +751,7 @@
         <div class="mini-card">
           <div class="mini-card-title">Publics concernés</div>
           <p>
-            • Élèves (collège, lycée)<br>
+            • Élèves-étudiants<br>
             • Enseignants & équipes éducatives<br>
             • Parents d’élèves<br>
             • Personnel administratif et vie scolaire
@@ -705,16 +766,15 @@
         <div>
           <h2 class="section-title">À qui s’adressent ces ateliers ?</h2>
           <p class="section-subtitle">
-            Des formats pensés pour les communautés éducatives, dans et autour de l’établissement scolaire.
-          </p>
+                      </p>
         </div>
-        <div class="section-tag">Collèges · Lycées · Enseignants · Parents</div>
+        <div class="section-tag">Interventions pour le jeune public & les structures éducatives · Enseignants · Parents</div>
       </div>
 
       <div class="grid-3">
         <article class="card">
-          <div class="card-tag">Élèves</div>
-          <h3 class="card-title">Élèves & classes</h3>
+          <div class="card-tag">Jeune public</div>
+          <h3 class="card-title">Élèves-étudiants</h3>
           <p>
             Séances d’1h à 2h pour explorer l’IA à travers des exemples concrets, des démonstrations en direct
             et des échanges sur ses usages : devoirs, réseaux sociaux, orientation…
@@ -724,7 +784,7 @@
           </p>
           <div class="card-badge">
             <span class="card-badge-dot"></span>
-            <span>Adapté au niveau (collège / lycée)</span>
+            <span>Adapté au niveau (collège / lycée / enseignement supérieur)</span>
           </div>
         </article>
 
@@ -764,7 +824,7 @@
         <div>
           <h2 class="section-title">IA, numérique et impact écologique</h2>
           <p class="section-subtitle">
-            Parler d’IA à l’école, c’est aussi parler de l’énergie consommée, des serveurs, de la pollution numérique
+            Parler d’IA, c’est aussi parler de l’énergie consommée, des serveurs, de la pollution numérique
             et des gestes simples pour réduire notre empreinte.
           </p>
         </div>
@@ -811,7 +871,7 @@
         <div>
           <h2 class="section-title">Formats d’intervention</h2>
           <p class="section-subtitle">
-            Des interventions modulables selon le niveau des élèves, le temps disponible et vos projets d’établissement.
+            Des interventions modulables selon le niveau, le temps disponible et les projets d’établissement.
           </p>
         </div>
         <div class="section-tag">En présentiel ou en visio</div>
@@ -823,7 +883,7 @@
           <h3 class="card-title">Découverte de l’IA</h3>
           <p>
             Présentation simple de l’IA, démonstrations en direct (chatbots, générateurs d’images, etc.),
-            quiz interactifs et échanges avec les élèves ou les adultes.
+            quiz interactifs et échanges avec le public.
           </p>
           <p>
             Idéal pour une première sensibilisation ou pour lancer un projet autour du numérique responsable.
@@ -920,8 +980,8 @@
           </div>
 
           <p>
-            Vous pouvez également me contacter directement par e-mail pour une première prise de contact,
-            une question précise ou une demande de devis.
+            Vous pouvez également nous contacter directement par e-mail pour une première prise de contact,
+            une question précise sur l'intervention.
           </p>
 
           <ul class="contact-list">
@@ -947,4 +1007,3 @@
   </div>
 </body>
 </html>
-
